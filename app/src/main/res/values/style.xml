@@ -20,6 +20,10 @@
 
     <style name="textNumeros">
         <item name="autoSizeTextType">uniform</item>
+        <item name="android:cursorVisible">false</item>
+        <item name="android:focusable">false</item>
+        <item name="android:focusableInTouchMode">false</item>
+
     </style>
 
 
