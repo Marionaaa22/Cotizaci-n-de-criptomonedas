@@ -136,17 +136,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun afegirNumero(){
-
-    }
-
-
-    fun apretarNumeros(){
-
-    }
-
-
-
     fun dialogSelecioCripto(){
         val edtDada: EditText = EditText(this)
         MaterialAlertDialogBuilder(this)
