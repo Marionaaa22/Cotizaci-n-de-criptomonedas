@@ -141,6 +141,11 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    fun apretarNumeros(){
+
+    }
+
+
 
     fun dialogSelecioCripto(){
         val edtDada: EditText = EditText(this)
