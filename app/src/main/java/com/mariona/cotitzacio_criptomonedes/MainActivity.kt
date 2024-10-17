@@ -23,16 +23,13 @@ class MainActivity : AppCompatActivity() {
     private var cotitzacio: Double = 0.0 // variable para la cotización
     private var criptoSelecionada: Boolean = false
     private var dobleSeleccio: Boolean = false
-    private var errorGeneral: String = getString(R.string.errorGeneral)
-    private var errorCalcular: String = getString(R.string.errorCalcular)
-    private var errorComa: String = getString(R.string.errorComa)
-    private var errorValid: String = getString(R.string.errorValid)
-    private var errorCriptomoneda: String = getString(R.string.errorCriptomoneda)
-    private var errorDecimal: String = getString(R.string.errorDecimal)
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val errorGeneral: String = getString(R.string.errorGeneral)
 
         try {
             // Buscar ID de las variables de texto
@@ -68,6 +65,9 @@ class MainActivity : AppCompatActivity() {
 
     // Función para cuando se aprieta algún número
     fun apretarNumero(view: View) {
+        val errorCriptomoneda: String = getString(R.string.errorCriptomoneda)
+        val errorGeneral: String = getString(R.string.errorGeneral)
+        val errorDecimal: String = getString(R.string.errorDecimal)
 
         if (!criptoSelecionada) {
             mostraError(errorCriptomoneda)
@@ -75,6 +75,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         try {
+
             // Variable para utilizar uno de los números como botón
             val button = view as Button
 
@@ -115,9 +116,11 @@ class MainActivity : AppCompatActivity() {
     // Función para borrar todo (CE)
     fun borrarTot(view: View) {
 
+        val errorGeneral: String = getString(R.string.errorGeneral)
+
         try {
             numeroActual = ""
-            txtInput.text = "0"
+            txtInput.text = ""
             txtOutput.text = "0"
             calcularCotitzacio()
         } catch (e: Exception) {
@@ -127,6 +130,10 @@ class MainActivity : AppCompatActivity() {
 
     // Función para la coma
     fun Coma(view: View) {
+        val errorValid: String = getString(R.string.errorValid)
+        val errorGeneral: String = getString(R.string.errorGeneral)
+
+        val errorCriptomoneda: String = getString(R.string.errorCriptomoneda)
 
         if (!criptoSelecionada) {
             mostraError(errorCriptomoneda)
@@ -149,6 +156,8 @@ class MainActivity : AppCompatActivity() {
     // Función para calcular la cotización
     fun calcularCotitzacio() {
         var resultat: Double = 0.0
+        val errorValid: String = getString(R.string.errorValid)
+        val errorGeneral: String = getString(R.string.errorGeneral)
         try {
             if (cotitzacio != 0.0 && numeroActual.isNotEmpty()) {
                 val diners = numeroActual.replace(",", ".").toDouble()
@@ -166,6 +175,9 @@ class MainActivity : AppCompatActivity() {
 
     // Función del diálogo para mostrar el valor de la cripto
     fun dialogSelecioCripto() {
+
+        val errorValid: String = getString(R.string.errorValid)
+        val errorGeneral: String = getString(R.string.errorGeneral)
 
         if(dobleSeleccio){
             mostraError("Només pots seleccionar una vegada la criptomoneda")

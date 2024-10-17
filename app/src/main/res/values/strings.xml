@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Cotitzacio_Criptomonedes</string>
+    <string name="app_name">Quote_Cryptocurrencies</string>
     <string name="bitcoin" translatable="false">Bitcoin</string>
     <string name="etherum" translatable="false">Etherum</string>
     <string name="tether" translatable="false">Tether</string>
