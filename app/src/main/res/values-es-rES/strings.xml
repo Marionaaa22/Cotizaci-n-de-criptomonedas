@@ -1,5 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">Cotitzacio_Criptomonedes</string>
     <string name="bitcoin">Bitcoin</string>
     <string name="etherum">Etherum</string>
     <string name="tether">Tether</string>

@@ -13,33 +13,34 @@ import kotlin.Exception
 
 class MainActivity : AppCompatActivity() {
 
-    //variables que encara no s'inicialitzen
+    // Variables que aún no se inicializan
     lateinit var txtInput: TextView
     lateinit var txtOutput: TextView
     lateinit var formatoDecimal: DecimalFormat
 
-    //variables
-    private var numeroActual: String = "" //suma de numeros
-    private var cotitzacio: Double = 0.0 //variable per la cotitzacio
+    // Variables
+    private var numeroActual: String = "" // suma de números
+    private var cotitzacio: Double = 0.0 // variable para la cotización
+    private var criptoSelecionada: Boolean = false
+    private var dobleSeleccio: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         try {
-            //busquem id de les variables del text
+            // Buscar ID de las variables de texto
             txtInput = findViewById(R.id.txtInput)
             txtOutput = findViewById(R.id.txtOutput)
-            formatoDecimal = DecimalFormat("#,##00")
+            formatoDecimal = DecimalFormat("#,##0.00")
 
-            //inicialitzem variables de les criptomonedes
+            // Inicializar variables de las criptomonedas
             val btnBitcoin: Button = findViewById(R.id.btnBitcoin)
             val btnEtherum: Button = findViewById(R.id.btnEtherum)
             val btnTether: Button = findViewById(R.id.btnTether)
             val btnXRP: Button = findViewById(R.id.btnXRP)
 
-            //fem un set listener i les dirigim cap a la funcio del dialog
-            //per així que posi elvalor
+            // Set listener y dirigirlas a la función del diálogo para que ponga el valor
             btnBitcoin.setOnClickListener {
                 dialogSelecioCripto()
             }
@@ -52,13 +53,19 @@ class MainActivity : AppCompatActivity() {
             btnXRP.setOnClickListener {
                 dialogSelecioCripto()
             }
-        }catch (e: Exception){
+
+        } catch (e: Exception) {
             supportActionBar?.title = "S'ha produit un error"
         }
     }
 
-    //funcio per cuan apreta algun numero
-    fun apretarNumero(view: View){
+    // Función para cuando se aprieta algún número
+    fun apretarNumero(view: View) {
+
+        if (!criptoSelecionada) {
+            mostraError("Selecciona primer la criptomoneda")
+            return
+        }
 
         try {
             // Variable para utilizar uno de los números como botón
@@ -88,8 +95,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    //funció per si borra només un numero
-    fun borrarNumero(view: View){
+    // Función para borrar solo un número
+    fun borrarNumero(view: View) {
 
         if (numeroActual.isNotEmpty()) {
             numeroActual = numeroActual.dropLast(1)
@@ -98,43 +105,49 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    //funcio per borrar tot CE
-    fun borrarTot(view: View){
+    // Función para borrar todo (CE)
+    fun borrarTot(view: View) {
 
         try {
-            numeroActual = ""
-            txtInput.text = ""
-            txtOutput.text = ""
+            numeroActual = "0"
+            txtInput.text = "0"
+            txtOutput.text = "0"
             calcularCotitzacio()
-        }catch (e: Exception){
-            mostraError("Error al añadir la coma: ${e.message}")
+        } catch (e: Exception) {
+            mostraError("Error al borrar tot: ${e.message}")
         }
     }
 
-    //funció de la coma
-    fun Coma(view: View){
+    // Función para la coma
+    fun Coma(view: View) {
+
+        if (!criptoSelecionada) {
+            mostraError("Selecciona primer la criptomoneda")
+            return
+        }
+
 
         try {
             if (!numeroActual.contains(",")) {
                 numeroActual += ","
                 txtInput.text = numeroActual
             } else {
-                mostraError("No puedes tener más de una coma.")
+                mostraError("No pots tenir més d'una coma.")
             }
         } catch (e: Exception) {
             mostraError("Error al añadir la coma: ${e.message}")
         }
     }
 
-    //funció per calcular la cotitzacio
-    fun calcularCotitzacio(){
+    // Función para calcular la cotización
+    fun calcularCotitzacio() {
         var resultat: Double = 0.0
 
         try {
             if (cotitzacio != 0.0 && numeroActual.isNotEmpty()) {
                 val diners = numeroActual.replace(",", ".").toDouble()
                 resultat = diners * cotitzacio
-                txtOutput.text = formatoDecimal.format(resultat)
+                txtOutput.text = resultat.toString()
             } else {
                 txtOutput.text = "0"
             }
@@ -145,33 +158,40 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    //funcio del dialog per mostar el valor de la cripto
-    fun dialogSelecioCripto(){
+    // Función del diálogo para mostrar el valor de la cripto
+    fun dialogSelecioCripto() {
+
+        if(dobleSeleccio){
+            mostraError("Només pots seleccionar una vegada la criptomoneda")
+            return
+        }
+
         val edtDada: EditText = EditText(this)
         MaterialAlertDialogBuilder(this)
-            .setTitle("Intodueix la cotització de la criptomoneda")
+            .setTitle("Introdueix la cotització de la criptomoneda")
             .setCancelable(false)
             .setMessage("Quant costa la criptomoneda?")
             .setView(edtDada)
-            .setNegativeButton("Cancelar",null)
-            .setPositiveButton("Aceptar"){ dialog, which ->
+            .setNegativeButton("Cancelar", null)
+            .setPositiveButton("Aceptar") { dialog, which ->
                 val inputCotitzacio = edtDada.text.toString()
-                if(inputCotitzacio.isNotEmpty() && numeroActual.isNotEmpty()){
-                    try{
+                if (inputCotitzacio.isNotEmpty()) {
+                    try {
                         cotitzacio = inputCotitzacio.toDouble()
-                    }catch (e: Exception){
-                        mostraError("Error inesperado al calcular: ${e.message}")
+                        criptoSelecionada = true
+                        dobleSeleccio = true
+                    } catch (e: Exception) {
+                        mostraError("Error al calcular: ${e.message}")
                     }
-                }else{
-
-                    mostraError("Possa un numerovàlid")
+                } else {
+                    mostraError("Posa un número vàlid")
                 }
             }
             .show()
     }
 
-    //funcio del snacbar dels errors
-    fun mostraError(missatge: String){
+    // Función del snackbar de los errores
+    fun mostraError(missatge: String) {
         Snackbar.make(findViewById(android.R.id.content),
             missatge, Snackbar.LENGTH_SHORT).show()
     }
