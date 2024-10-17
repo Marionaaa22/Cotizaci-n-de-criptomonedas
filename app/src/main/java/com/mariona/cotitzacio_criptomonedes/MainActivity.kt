@@ -116,7 +116,7 @@ class MainActivity : AppCompatActivity() {
     fun borrarTot(view: View) {
 
         try {
-            numeroActual = "0"
+            numeroActual = ""
             txtInput.text = "0"
             txtOutput.text = "0"
             calcularCotitzacio()

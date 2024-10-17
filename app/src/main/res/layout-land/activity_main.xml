@@ -69,6 +69,8 @@
         app:layout_constraintGuide_percent="0.40" />
 
     <EditText
+        android:id="@+id/txtInput"
+        style="@style/textNumeros"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:ems="10"
@@ -79,7 +81,8 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextNumberDecimal4"
+        android:id="@+id/txtOutput"
+        style="@style/textNumeros"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:ems="10"
@@ -90,7 +93,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline27" />
 
     <Button
-        android:id="@+id/button26"
+        android:id="@+id/btnCE"
         style="@style/botonsFuncions"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -101,11 +104,11 @@
         app:layout_constraintTop_toTopOf="@+id/guideline29" />
 
     <Button
-        android:id="@+id/button27"
+        android:id="@+id/btnBorrar"
         style="@style/botonsFuncions"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="X"
+        android:text="C"
         app:layout_constraintBottom_toTopOf="@+id/guideline25"
         app:layout_constraintEnd_toStartOf="@+id/guideline28"
         app:layout_constraintHorizontal_bias="0.518"
@@ -113,7 +116,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline26" />
 
     <Button
-        android:id="@+id/button28"
+        android:id="@+id/btnComa"
         style="@style/botonsFuncions"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -124,7 +127,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline25" />
 
     <Button
-        android:id="@+id/button29"
+        android:id="@+id/btn3"
         style="@style/botonNumeros"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -135,7 +138,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline29" />
 
     <Button
-        android:id="@+id/button30"
+        android:id="@+id/btn6"
         style="@style/botonNumeros"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -146,7 +149,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline26" />
 
     <Button
-        android:id="@+id/button31"
+        android:id="@+id/btn9"
         style="@style/botonNumeros"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -157,7 +160,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline25" />
 
     <Button
-        android:id="@+id/button32"
+        android:id="@+id/btn2"
         style="@style/botonNumeros"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -168,7 +171,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline29" />
 
     <Button
-        android:id="@+id/button33"
+        android:id="@+id/btn5"
         style="@style/botonNumeros"
         android:layout_width="144dp"
         android:layout_height="62dp"
@@ -182,7 +185,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/button34"
+        android:id="@+id/btn8"
         style="@style/botonNumeros"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -193,7 +196,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline25" />
 
     <Button
-        android:id="@+id/button35"
+        android:id="@+id/btn0"
         style="@style/botonNumeros"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -204,7 +207,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline24" />
 
     <Button
-        android:id="@+id/button36"
+        android:id="@+id/btn7"
         style="@style/botonNumeros"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -215,7 +218,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline25" />
 
     <Button
-        android:id="@+id/button37"
+        android:id="@+id/btn4"
         style="@style/botonNumeros"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -226,7 +229,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline26" />
 
     <Button
-        android:id="@+id/button38"
+        android:id="@+id/btn1"
         style="@style/botonNumeros"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -240,6 +243,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
+        android:id="@+id/btnBitcoin"
         style="@style/botonsCriptomonedes"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -251,7 +255,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline29" />
 
     <Button
-        android:id="@+id/button40"
+        android:id="@+id/btnEtherum"
         style="@style/botonsCriptomonedes"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -263,7 +267,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline26" />
 
     <Button
-        android:id="@+id/button41"
+        android:id="@+id/btnTether"
         style="@style/botonsCriptomonedes"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -275,7 +279,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline25" />
 
     <Button
-        android:id="@+id/button42"
+        android:id="@+id/btnXRP"
         style="@style/botonsCriptomonedes"
         android:layout_width="0dp"
         android:layout_height="0dp"
