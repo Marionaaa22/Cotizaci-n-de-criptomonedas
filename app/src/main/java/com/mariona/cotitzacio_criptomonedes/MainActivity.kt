@@ -22,8 +22,7 @@ class MainActivity : AppCompatActivity() {
     private var numeroActual: String = "" // suma de números
     private var cotitzacio: Double = 0.0 // variable para la cotización
     private var criptoSelecionada: Boolean = false
-    private var dobleSeleccio: Boolean = false
-
+    private var dobleSeleccio: Button? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,22 +44,31 @@ class MainActivity : AppCompatActivity() {
 
             // Set listener y dirigirlas a la función del diálogo para que ponga el valor
             btnBitcoin.setOnClickListener {
-                dialogSelecioCripto()
+                criptoSeleccionada(btnBitcoin)
             }
             btnEtherum.setOnClickListener {
-                dialogSelecioCripto()
+                criptoSeleccionada(btnEtherum)
             }
             btnTether.setOnClickListener {
-                dialogSelecioCripto()
+                criptoSeleccionada(btnTether)
             }
             btnXRP.setOnClickListener {
-                dialogSelecioCripto()
+                criptoSeleccionada(btnXRP)
             }
 
         } catch (e: Exception) {
-
             mostraError(errorGeneral)
         }
+    }
+
+    fun criptoSeleccionada(button: Button) {
+        if (dobleSeleccio != null) {
+            mostraError("Només pots seleccionar una vegada la criptomoneda")
+            return
+        }
+        dobleSeleccio = button
+        button.isSelected = true
+        dialogSelecioCripto()
     }
 
     // Función para cuando se aprieta algún número
@@ -75,7 +83,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         try {
-
             // Variable para utilizar uno de los números como botón
             val button = view as Button
 
@@ -105,7 +112,6 @@ class MainActivity : AppCompatActivity() {
 
     // Función para borrar solo un número
     fun borrarNumero(view: View) {
-
         if (numeroActual.isNotEmpty()) {
             numeroActual = numeroActual.dropLast(1)
             txtInput.text = numeroActual
@@ -115,9 +121,7 @@ class MainActivity : AppCompatActivity() {
 
     // Función para borrar todo (CE)
     fun borrarTot(view: View) {
-
         val errorGeneral: String = getString(R.string.errorGeneral)
-
         try {
             numeroActual = ""
             txtInput.text = ""
@@ -130,9 +134,8 @@ class MainActivity : AppCompatActivity() {
 
     // Función para la coma
     fun Coma(view: View) {
-        val errorValid: String = getString(R.string.errorValid)
+        val errorComa: String = getString(R.string.errorValid)
         val errorGeneral: String = getString(R.string.errorGeneral)
-
         val errorCriptomoneda: String = getString(R.string.errorCriptomoneda)
 
         if (!criptoSelecionada) {
@@ -140,13 +143,12 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-
         try {
             if (!numeroActual.contains(",")) {
                 numeroActual += ","
                 txtInput.text = numeroActual
             } else {
-                mostraError(errorValid)
+                mostraError(errorComa)
             }
         } catch (e: Exception) {
             mostraError(errorGeneral)
@@ -175,14 +177,8 @@ class MainActivity : AppCompatActivity() {
 
     // Función del diálogo para mostrar el valor de la cripto
     fun dialogSelecioCripto() {
-
         val errorValid: String = getString(R.string.errorValid)
         val errorGeneral: String = getString(R.string.errorGeneral)
-
-        if(dobleSeleccio){
-            mostraError("Només pots seleccionar una vegada la criptomoneda")
-            return
-        }
 
         val edtDada: EditText = EditText(this)
         MaterialAlertDialogBuilder(this)
@@ -197,7 +193,6 @@ class MainActivity : AppCompatActivity() {
                     try {
                         cotitzacio = inputCotitzacio.toDouble()
                         criptoSelecionada = true
-                        dobleSeleccio = true
                     } catch (e: Exception) {
                         mostraError(errorGeneral)
                     }
@@ -210,8 +205,9 @@ class MainActivity : AppCompatActivity() {
 
     // Función del snackbar de los errores
     fun mostraError(missatge: String) {
-
-        Snackbar.make(findViewById(android.R.id.content),
-            missatge, Snackbar.LENGTH_SHORT).show()
+        Snackbar.make(
+            findViewById(android.R.id.content),
+            missatge, Snackbar.LENGTH_SHORT
+        ).show()
     }
 }

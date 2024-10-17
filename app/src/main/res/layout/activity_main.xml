@@ -68,14 +68,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.20" />
+        app:layout_constraintGuide_percent="0.0" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.5" />
+        app:layout_constraintGuide_percent="0.4" />
 
     <Button
         android:id="@+id/btn2"
@@ -158,7 +158,7 @@
     <Button
         android:id="@+id/btn6"
         style="@style/botonNumeros"
-        android:layout_width="102dp"
+        android:layout_width="98dp"
         android:layout_height="71dp"
         android:layout_marginTop="12dp"
         android:autoSizeTextType="uniform"
@@ -174,8 +174,8 @@
     <Button
         android:id="@+id/btnBorrar"
         style="@style/botonsFuncions"
-        android:layout_width="102dp"
-        android:layout_height="69dp"
+        android:layout_width="97dp"
+        android:layout_height="70dp"
         android:layout_marginTop="4dp"
         android:autoSizeTextType="uniform"
         android:onClick="borrarNumero"
@@ -262,7 +262,7 @@
         android:layout_height="0dp"
         android:ems="10"
         android:inputType="numberDecimal"
-        app:layout_constraintBottom_toTopOf="@+id/guideline9"
+        app:layout_constraintBottom_toTopOf="@+id/guideline11"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -274,32 +274,32 @@
         android:layout_height="0dp"
         android:ems="10"
         android:inputType="numberDecimal"
-        app:layout_constraintBottom_toTopOf="@+id/guideline16"
+        app:layout_constraintBottom_toTopOf="@+id/guideline10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline9" />
+        app:layout_constraintTop_toTopOf="@+id/guideline11" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.50" />
+        app:layout_constraintGuide_percent="0.4" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.40" />
+        app:layout_constraintGuide_percent="0.4" />
 
     <Button
         android:id="@+id/btnBitcoin"
         style="@style/botonsCriptomonedes"
-        android:layout_width="97dp"
-        android:layout_height="55dp"
+        android:layout_width="99dp"
+        android:layout_height="103dp"
         android:autoSizeTextType="uniform"
-        android:text="@string/bitcoin"
+        android:text="Bitcoin"
         app:layout_constraintBottom_toTopOf="@+id/guideline7"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="parent"
@@ -308,8 +308,8 @@
     <Button
         android:id="@+id/btnEtherum"
         style="@style/botonsCriptomonedes"
-        android:layout_width="104dp"
-        android:layout_height="53dp"
+        android:layout_width="98dp"
+        android:layout_height="103dp"
         android:autoSizeTextType="uniform"
         android:onClick="apretarCripto"
         android:text="@string/etherum"
@@ -321,8 +321,8 @@
     <Button
         android:id="@+id/btnTether"
         style="@style/botonsCriptomonedes"
-        android:layout_width="100dp"
-        android:layout_height="52dp"
+        android:layout_width="96dp"
+        android:layout_height="102dp"
         android:autoSizeTextType="uniform"
         android:onClick="apretarCripto"
         android:text="@string/tether"
@@ -335,14 +335,21 @@
     <Button
         android:id="@+id/btnXRP"
         style="@style/botonsCriptomonedes"
-        android:layout_width="102dp"
-        android:layout_height="49dp"
-        android:autoSizeTextType="uniform"
+        android:layout_width="94dp"
+        android:layout_height="99dp"
+        android:autoSizeTextType="none"
         android:onClick="apretarCripto"
         android:text="@string/xrp"
         app:layout_constraintBottom_toTopOf="@+id/guideline7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="@+id/guideline10" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.20" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
