@@ -23,6 +23,12 @@ class MainActivity : AppCompatActivity() {
     private var cotitzacio: Double = 0.0 // variable para la cotización
     private var criptoSelecionada: Boolean = false
     private var dobleSeleccio: Boolean = false
+    private var errorGeneral: String = getString(R.string.errorGeneral)
+    private var errorCalcular: String = getString(R.string.errorCalcular)
+    private var errorComa: String = getString(R.string.errorComa)
+    private var errorValid: String = getString(R.string.errorValid)
+    private var errorCriptomoneda: String = getString(R.string.errorCriptomoneda)
+    private var errorDecimal: String = getString(R.string.errorDecimal)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,7 +61,8 @@ class MainActivity : AppCompatActivity() {
             }
 
         } catch (e: Exception) {
-            supportActionBar?.title = "S'ha produit un error"
+
+            mostraError(errorGeneral)
         }
     }
 
@@ -63,7 +70,7 @@ class MainActivity : AppCompatActivity() {
     fun apretarNumero(view: View) {
 
         if (!criptoSelecionada) {
-            mostraError("Selecciona primer la criptomoneda")
+            mostraError(errorCriptomoneda)
             return
         }
 
@@ -83,7 +90,7 @@ class MainActivity : AppCompatActivity() {
                     calcularCotitzacio()
 
                 } else {
-                    mostraError("No pots més de 2 decimals.")
+                    mostraError(errorDecimal)
                 }
             } else {
                 numeroActual += numero
@@ -91,7 +98,7 @@ class MainActivity : AppCompatActivity() {
                 calcularCotitzacio()
             }
         } catch (e: Exception) {
-            supportActionBar?.title = "S'ha produit un error"
+            mostraError(errorGeneral)
         }
     }
 
@@ -114,7 +121,7 @@ class MainActivity : AppCompatActivity() {
             txtOutput.text = "0"
             calcularCotitzacio()
         } catch (e: Exception) {
-            mostraError("Error al borrar tot: ${e.message}")
+            mostraError(errorGeneral)
         }
     }
 
@@ -122,7 +129,7 @@ class MainActivity : AppCompatActivity() {
     fun Coma(view: View) {
 
         if (!criptoSelecionada) {
-            mostraError("Selecciona primer la criptomoneda")
+            mostraError(errorCriptomoneda)
             return
         }
 
@@ -132,17 +139,16 @@ class MainActivity : AppCompatActivity() {
                 numeroActual += ","
                 txtInput.text = numeroActual
             } else {
-                mostraError("No pots tenir més d'una coma.")
+                mostraError(errorValid)
             }
         } catch (e: Exception) {
-            mostraError("Error al añadir la coma: ${e.message}")
+            mostraError(errorGeneral)
         }
     }
 
     // Función para calcular la cotización
     fun calcularCotitzacio() {
         var resultat: Double = 0.0
-
         try {
             if (cotitzacio != 0.0 && numeroActual.isNotEmpty()) {
                 val diners = numeroActual.replace(",", ".").toDouble()
@@ -152,9 +158,9 @@ class MainActivity : AppCompatActivity() {
                 txtOutput.text = "0"
             }
         } catch (e: NumberFormatException) {
-            mostraError("Error al calcular la cotización: ${e.message}")
+            mostraError(errorValid)
         } catch (e: Exception) {
-            mostraError("Error inesperado al calcular: ${e.message}")
+            mostraError(errorGeneral)
         }
     }
 
@@ -181,10 +187,10 @@ class MainActivity : AppCompatActivity() {
                         criptoSelecionada = true
                         dobleSeleccio = true
                     } catch (e: Exception) {
-                        mostraError("Error al calcular: ${e.message}")
+                        mostraError(errorGeneral)
                     }
                 } else {
-                    mostraError("Posa un número vàlid")
+                    mostraError(errorValid)
                 }
             }
             .show()
@@ -192,6 +198,7 @@ class MainActivity : AppCompatActivity() {
 
     // Función del snackbar de los errores
     fun mostraError(missatge: String) {
+
         Snackbar.make(findViewById(android.R.id.content),
             missatge, Snackbar.LENGTH_SHORT).show()
     }

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Cotitzacio_Criptomonedes</string>
+    <string name="bitcoin">Bitcoin</string>
+    <string name="etherum">Etherum</string>
+    <string name="tether">Tether</string>
+    <string name="xrp">XRP</string>
+    <string name="c">C</string>
+    <string name="ce">CE</string>
+    <string name="errorValid">"Entrez un numéro valide"</string>
+    <string name="errorComa">Vous ne pouvez pas mettre plus d'une virgule</string>
+    <string name="errorCalcular">Le calcul ne peut pas être effectué</string>
+    <string name="errorGeneral">Il y a eu une erreur</string>
+    <string name="errorCriptomoneda">Vous ne pouvez choisir qu’une seule crypto-monnaie</string>
+    <string name="errorDecimal">Vous ne pouvez mettre que deux décimales</string>
+</resources>

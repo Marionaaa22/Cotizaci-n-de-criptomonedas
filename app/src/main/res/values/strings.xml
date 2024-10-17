@@ -1,9 +1,15 @@
 <resources>
     <string name="app_name" translatable="false">Cotitzacio_Criptomonedes</string>
-    <string name="bitcoin">Bitcoin</string>
-    <string name="etherum">Etherum</string>
-    <string name="tether">Tether</string>
-    <string name="xrp">XRP</string>
-    <string name="c">C</string>
-    <string name="ce">CE</string>
+    <string name="bitcoin" translatable="false">Bitcoin</string>
+    <string name="etherum" translatable="false">Etherum</string>
+    <string name="tether" translatable="false">Tether</string>
+    <string name="xrp" translatable="false">XRP</string>
+    <string name="c" translatable="false">C</string>
+    <string name="ce" translatable="false">CE</string>
+    <string name="errorValid">Introduce a valid number</string>
+    <string name="errorComa">You cannot put more than one comma</string>
+    <string name="errorCalcular">The calculation cannot be performed</string>
+    <string name="errorGeneral">There was an error</string>
+    <string name="errorCriptomoneda">You can only choose one cryptocurrency</string>
+    <string name="errorDecimal">You can only put two decimal places</string>
 </resources>
