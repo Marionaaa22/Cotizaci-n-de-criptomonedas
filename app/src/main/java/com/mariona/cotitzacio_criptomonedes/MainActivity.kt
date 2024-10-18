@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val errorGeneral: String = getString(R.string.errorGeneral)
-
+        val  errorDoble:String = getString(R.string.errorDoble)
         try {
             // Buscar ID de las variables de texto
             txtInput = findViewById(R.id.txtInput)
@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
                     dialogSelecioCripto()
                 }
                 else{
-                    mostraError(errorGeneral)
+                    mostraError(errorDoble)
                 }
             }
             btnEtherum.setOnClickListener {
@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 else{
-                    mostraError(errorGeneral)
+                    mostraError(errorDoble)
                 }
             }
             btnTether.setOnClickListener {
@@ -75,23 +75,22 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 else{
-                    mostraError(errorGeneral)
+                    mostraError(errorDoble)
                 }
             }
             btnXRP.setOnClickListener {
-
                 if(dobleXRP == false){
                     dobleXRP = true
                     dialogSelecioCripto()
                 }
 
                 else{
-                    mostraError(errorGeneral)
+                    mostraError(errorDoble)
                 }
             }
 
         } catch (e: Exception) {
-            mostraError(errorGeneral)
+            mostraError(errorDoble)
         }
     }
 
@@ -175,7 +174,7 @@ class MainActivity : AppCompatActivity() {
                 mostraError(errorComa)
             }
         } catch (e: Exception) {
-            mostraError(errorGeneral)
+            mostraError(errorComa)
         }
     }
 
