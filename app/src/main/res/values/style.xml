@@ -15,12 +15,12 @@
     </style>
 
     <style name="botonsCriptomonedes">
-
         <item name="android:backgroundTint">#FFD700</item>
         <item name="android:textColor">#000000</item>
         <item name="autoSizeTextType">uniform</item>
         <item name="android:layout_margin">2dp</item>
-    </style>ç
+
+    </style>
 
     <style name="textNumeros">
         <item name="autoSizeTextType">uniform</item>
@@ -31,5 +31,13 @@
         <item name="android:gravity">end</item>
     </style>
 
+    <style name="textPortail">
+        <item name="android:layout_margin">2dp</item>
+        <item name="autoSizeTextType">uniform</item>
+    </style>
 
+    <style name="textLand">
+        <item name="android:layout_margin">12dp</item>
+        <item name="autoSizeTextType">uniform</item>
+    </style>
 </resources>

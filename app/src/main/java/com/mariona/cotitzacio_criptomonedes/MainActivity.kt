@@ -22,7 +22,11 @@ class MainActivity : AppCompatActivity() {
     private var numeroActual: String = "" // suma de números
     private var cotitzacio: Double = 0.0 // variable para la cotización
     private var criptoSelecionada: Boolean = false
-    private var dobleSeleccio: Button? = null
+    private var dobleBitcoin: Boolean = false
+    private var dobleEtherum: Boolean = false
+    private var dobleTether: Boolean = false
+    private var dobleXRP: Boolean = false
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,31 +48,51 @@ class MainActivity : AppCompatActivity() {
 
             // Set listener y dirigirlas a la función del diálogo para que ponga el valor
             btnBitcoin.setOnClickListener {
-                criptoSeleccionada(btnBitcoin)
+
+                if(dobleBitcoin == false){
+                    dobleBitcoin = true
+                    dialogSelecioCripto()
+                }
+                else{
+                    mostraError(errorGeneral)
+                }
             }
             btnEtherum.setOnClickListener {
-                criptoSeleccionada(btnEtherum)
+                if(dobleEtherum == false){
+                    dobleEtherum = true
+                    dialogSelecioCripto()
+                }
+
+                else{
+                    mostraError(errorGeneral)
+                }
             }
             btnTether.setOnClickListener {
-                criptoSeleccionada(btnTether)
+
+                if(dobleTether == false){
+                    dobleTether = true
+                    dialogSelecioCripto()
+                }
+
+                else{
+                    mostraError(errorGeneral)
+                }
             }
             btnXRP.setOnClickListener {
-                criptoSeleccionada(btnXRP)
+
+                if(dobleXRP == false){
+                    dobleXRP = true
+                    dialogSelecioCripto()
+                }
+
+                else{
+                    mostraError(errorGeneral)
+                }
             }
 
         } catch (e: Exception) {
             mostraError(errorGeneral)
         }
-    }
-
-    fun criptoSeleccionada(button: Button) {
-        if (dobleSeleccio != null) {
-            mostraError("Només pots seleccionar una vegada la criptomoneda")
-            return
-        }
-        dobleSeleccio = button
-        button.isSelected = true
-        dialogSelecioCripto()
     }
 
     // Función para cuando se aprieta algún número
