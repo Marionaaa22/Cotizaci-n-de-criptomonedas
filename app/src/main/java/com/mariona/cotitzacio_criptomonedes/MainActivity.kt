@@ -27,13 +27,12 @@ class MainActivity : AppCompatActivity() {
     private var dobleTether: Boolean = false
     private var dobleXRP: Boolean = false
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         val errorGeneral: String = getString(R.string.errorGeneral)
-        val  errorDoble:String = getString(R.string.errorDoble)
+        val errorDoble: String = getString(R.string.errorDoble)
         try {
             // Buscar ID de las variables de texto
             txtInput = findViewById(R.id.txtInput)
@@ -48,43 +47,34 @@ class MainActivity : AppCompatActivity() {
 
             // Set listener y dirigirlas a la función del diálogo para que ponga el valor
             btnBitcoin.setOnClickListener {
-
-                if(dobleBitcoin == false){
+                if (!dobleBitcoin) {
                     dobleBitcoin = true
                     dialogSelecioCripto()
-                }
-                else{
+                } else {
                     mostraError(errorDoble)
                 }
             }
             btnEtherum.setOnClickListener {
-                if(dobleEtherum == false){
+                if (!dobleEtherum) {
                     dobleEtherum = true
                     dialogSelecioCripto()
-                }
-
-                else{
+                } else {
                     mostraError(errorDoble)
                 }
             }
             btnTether.setOnClickListener {
-
-                if(dobleTether == false){
+                if (!dobleTether) {
                     dobleTether = true
                     dialogSelecioCripto()
-                }
-
-                else{
+                } else {
                     mostraError(errorDoble)
                 }
             }
             btnXRP.setOnClickListener {
-                if(dobleXRP == false){
+                if (!dobleXRP) {
                     dobleXRP = true
                     dialogSelecioCripto()
-                }
-
-                else{
+                } else {
                     mostraError(errorDoble)
                 }
             }
@@ -119,7 +109,6 @@ class MainActivity : AppCompatActivity() {
                     numeroActual += numero
                     txtInput.text = numeroActual
                     calcularCotitzacio()
-
                 } else {
                     mostraError(errorDecimal)
                 }
@@ -157,8 +146,7 @@ class MainActivity : AppCompatActivity() {
 
     // Función para la coma
     fun Coma(view: View) {
-        val errorComa: String = getString(R.string.errorValid)
-        val errorGeneral: String = getString(R.string.errorGeneral)
+        val errorComa: String = getString(R.string.errorComa)
         val errorCriptomoneda: String = getString(R.string.errorCriptomoneda)
 
         if (!criptoSelecionada) {
@@ -187,7 +175,7 @@ class MainActivity : AppCompatActivity() {
             if (cotitzacio != 0.0 && numeroActual.isNotEmpty()) {
                 val diners = numeroActual.replace(",", ".").toDouble()
                 resultat = diners * cotitzacio
-                txtOutput.text = resultat.toString()
+                txtOutput.text = formatoDecimal.format(resultat)
             } else {
                 txtOutput.text = "0"
             }

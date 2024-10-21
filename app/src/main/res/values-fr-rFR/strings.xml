@@ -14,5 +14,4 @@
     <string name="errorCriptomoneda">Vous ne pouvez choisir qu’une seule crypto-monnaie</string>
     <string name="errorDecimal">Vous ne pouvez mettre que deux décimales</string>
     <string name="errorDoble">Vous ne pouvez sélectionner la crypto-monnaie quune seule fois</string>
-    <string name="you_can_only_select_the_cryptocurrency_once">You can only select the cryptocurrency once</string>
 </resources>
