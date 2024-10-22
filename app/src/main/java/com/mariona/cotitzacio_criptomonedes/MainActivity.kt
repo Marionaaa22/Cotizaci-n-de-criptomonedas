@@ -12,6 +12,7 @@ import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.util.Locale
 import kotlin.Exception
+import androidx.core.content.ContextCompat
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,6 +29,8 @@ class MainActivity : AppCompatActivity() {
     private var dobleEtherum: Boolean = false
     private var dobleTether: Boolean = false
     private var dobleXRP: Boolean = false
+
+    private var selectedButton: Button? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +59,7 @@ class MainActivity : AppCompatActivity() {
             btnBitcoin.setOnClickListener {
                 if (!dobleBitcoin) {
                     dobleBitcoin = true
+                    selectButton(btnBitcoin)
                     dialogSelecioCripto()
                 } else {
                     mostraError(errorCriptomoneda)
@@ -64,6 +68,7 @@ class MainActivity : AppCompatActivity() {
             btnEtherum.setOnClickListener {
                 if (!dobleEtherum) {
                     dobleEtherum = true
+                    selectButton(btnEtherum)
                     dialogSelecioCripto()
                 } else {
                     mostraError(errorCriptomoneda)
@@ -72,6 +77,7 @@ class MainActivity : AppCompatActivity() {
             btnTether.setOnClickListener {
                 if (!dobleTether) {
                     dobleTether = true
+                    selectButton(btnTether)
                     dialogSelecioCripto()
                 } else {
                     mostraError(errorCriptomoneda)
@@ -80,15 +86,41 @@ class MainActivity : AppCompatActivity() {
             btnXRP.setOnClickListener {
                 if (!dobleXRP) {
                     dobleXRP = true
+                    selectButton(btnXRP)
                     dialogSelecioCripto()
                 } else {
                     mostraError(errorCriptomoneda)
                 }
             }
 
+            // Restaurar el estado si existe
+            savedInstanceState?.let {
+                numeroActual = it.getString("numeroActual", "")
+                cotitzacio = it.getDouble("cotitzacio", 0.0)
+                criptoSelecionada = it.getBoolean("criptoSelecionada", false)
+                dobleBitcoin = it.getBoolean("dobleBitcoin", false)
+                dobleEtherum = it.getBoolean("dobleEtherum", false)
+                dobleTether = it.getBoolean("dobleTether", false)
+                dobleXRP = it.getBoolean("dobleXRP", false)
+
+                txtInput.text = numeroActual
+                calcularCotitzacio()
+            }
+
         } catch (e: Exception) {
             mostraError(errorCriptomoneda)
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString("numeroActual", numeroActual)
+        outState.putDouble("cotitzacio", cotitzacio)
+        outState.putBoolean("criptoSelecionada", criptoSelecionada)
+        outState.putBoolean("dobleBitcoin", dobleBitcoin)
+        outState.putBoolean("dobleEtherum", dobleEtherum)
+        outState.putBoolean("dobleTether", dobleTether)
+        outState.putBoolean("dobleXRP", dobleXRP)
     }
 
     // Función para cuando se aprieta algún número
@@ -155,18 +187,24 @@ class MainActivity : AppCompatActivity() {
     fun Coma(view: View) {
         val errorComa: String = getString(R.string.errorComa)
         val errorCriptomoneda: String = getString(R.string.errorCriptomoneda)
-
-        if (!criptoSelecionada) {
-            mostraError(errorCriptomoneda)
-            return
-        }
+        val errorNoComa: String = getString(R.string.errorNoComa)
 
         try {
-            if (!numeroActual.contains(",")) {
-                numeroActual += ","
-                txtInput.text = numeroActual
+            if (numeroActual.isNotEmpty()) {
+
+                if (!criptoSelecionada) {
+                    mostraError(errorCriptomoneda)
+                    return
+                }
+
+                if (!numeroActual.contains(",")) {
+                    numeroActual += ","
+                    txtInput.text = numeroActual
+                } else {
+                    mostraError(errorComa)
+                }
             } else {
-                mostraError(errorComa)
+                mostraError(errorNoComa)
             }
         } catch (e: Exception) {
             mostraError(errorComa)
@@ -221,6 +259,16 @@ class MainActivity : AppCompatActivity() {
             .show()
     }
 
+    // Función para seleccionar el botón y cambiar su color
+    private fun selectButton(button: Button) {
+        // Resetear el color del botón previamente seleccionado
+        selectedButton?.setBackgroundColor(ContextCompat.getColor(this, R.color.defaultColor))
+        // Cambiar el color del nuevo botón seleccionado
+        button.setBackgroundColor(ContextCompat.getColor(this, R.color.selectedColor))
+        // Actualizar el botón seleccionado
+        selectedButton = button
+    }
+
     // Función del snackbar de los errores
     fun mostraError(missatge: String) {
         Snackbar.make(
@@ -228,4 +276,17 @@ class MainActivity : AppCompatActivity() {
             missatge, Snackbar.LENGTH_SHORT
         ).show()
     }
+
+    // Función para resetear el estado
+    /*public fun resetState() {
+        numeroActual = ""
+        cotitzacio = 0.0
+        criptoSelecionada = false
+        txtInput.text = ""
+        txtOutput.text = "0"
+        dobleBitcoin = false
+        dobleEtherum = false
+        dobleTether = false
+        dobleXRP = false
+    }*/
 }

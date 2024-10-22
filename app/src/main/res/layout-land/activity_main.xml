@@ -123,6 +123,7 @@
         style="@style/botonsFuncions"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:onClick="Coma"
         android:text=","
         app:layout_constraintBottom_toTopOf="@+id/guideline24"
         app:layout_constraintEnd_toStartOf="@+id/guideline28"

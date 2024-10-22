@@ -39,4 +39,7 @@
         <item name="android:layout_margin">12dp</item>
         <item name="autoSizeTextType">uniform</item>
     </style>
+
+    <color name="selectedColor">#FF4081</color>
+    <color name="defaultColor">#FFD700</color>
 </resources>

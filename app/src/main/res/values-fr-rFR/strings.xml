@@ -14,4 +14,5 @@
     <string name="errorCriptomoneda">Vous ne pouvez choisir qu’une seule crypto-monnaie</string>
     <string name="errorDecimal">Vous ne pouvez mettre que deux décimales</string>
     <string name="errorDoble">Vous sélectionnez d’abord la crypto-monnaie</string>
+    <string name="errorNoComa">Vous ne pouvez pas saisir la virgule sans chiffres</string>
 </resources>

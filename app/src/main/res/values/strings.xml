@@ -13,4 +13,5 @@
     <string name="errorCriptomoneda">You can only choose one cryptocurrency</string>
     <string name="errorDecimal">You can only put two decimal places</string>
     <string name="errorDoble">First select the cryptocurrency</string>
+    <string name="errorNoComa">You cannot enter the comma without numbers</string>
 </resources>
