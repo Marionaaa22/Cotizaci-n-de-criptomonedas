@@ -13,5 +13,5 @@
     <string name="errorGeneral">Habído un error</string>
     <string name="errorCriptomoneda">Solo puedes escoger una criptomoneda</string>
     <string name="errorDecimal">Solo puedes poner dos decimales</string>
-    <string name="errorDoble">Solo puedes seleccionar una vez la criptomoneda</string>
+    <string name="errorDoble">Primero selecciona la criptomoneda</string>
 </resources>

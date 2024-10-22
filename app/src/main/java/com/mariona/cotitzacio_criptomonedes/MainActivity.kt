@@ -9,6 +9,8 @@ import android.widget.TextView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
+import java.util.Locale
 import kotlin.Exception
 
 class MainActivity : AppCompatActivity() {
@@ -31,13 +33,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val errorGeneral: String = getString(R.string.errorGeneral)
-        val errorDoble: String = getString(R.string.errorDoble)
+        val errorCriptomoneda: String = getString(R.string.errorCriptomoneda)
+
         try {
             // Buscar ID de las variables de texto
             txtInput = findViewById(R.id.txtInput)
             txtOutput = findViewById(R.id.txtOutput)
-            formatoDecimal = DecimalFormat("#,##0.00")
+
+            // Configurar el formato decimal con coma
+            val symbols = DecimalFormatSymbols(Locale.getDefault())
+            symbols.decimalSeparator = ','
+            symbols.groupingSeparator = '.'
+            formatoDecimal = DecimalFormat("#,##0.00", symbols)
 
             // Inicializar variables de las criptomonedas
             val btnBitcoin: Button = findViewById(R.id.btnBitcoin)
@@ -51,7 +58,7 @@ class MainActivity : AppCompatActivity() {
                     dobleBitcoin = true
                     dialogSelecioCripto()
                 } else {
-                    mostraError(errorDoble)
+                    mostraError(errorCriptomoneda)
                 }
             }
             btnEtherum.setOnClickListener {
@@ -59,7 +66,7 @@ class MainActivity : AppCompatActivity() {
                     dobleEtherum = true
                     dialogSelecioCripto()
                 } else {
-                    mostraError(errorDoble)
+                    mostraError(errorCriptomoneda)
                 }
             }
             btnTether.setOnClickListener {
@@ -67,7 +74,7 @@ class MainActivity : AppCompatActivity() {
                     dobleTether = true
                     dialogSelecioCripto()
                 } else {
-                    mostraError(errorDoble)
+                    mostraError(errorCriptomoneda)
                 }
             }
             btnXRP.setOnClickListener {
@@ -75,23 +82,23 @@ class MainActivity : AppCompatActivity() {
                     dobleXRP = true
                     dialogSelecioCripto()
                 } else {
-                    mostraError(errorDoble)
+                    mostraError(errorCriptomoneda)
                 }
             }
 
         } catch (e: Exception) {
-            mostraError(errorDoble)
+            mostraError(errorCriptomoneda)
         }
     }
 
     // Función para cuando se aprieta algún número
     fun apretarNumero(view: View) {
-        val errorCriptomoneda: String = getString(R.string.errorCriptomoneda)
+        val errorDoble: String = getString(R.string.errorDoble)
         val errorGeneral: String = getString(R.string.errorGeneral)
         val errorDecimal: String = getString(R.string.errorDecimal)
 
         if (!criptoSelecionada) {
-            mostraError(errorCriptomoneda)
+            mostraError(errorDoble)
             return
         }
 
@@ -202,7 +209,7 @@ class MainActivity : AppCompatActivity() {
                 val inputCotitzacio = edtDada.text.toString()
                 if (inputCotitzacio.isNotEmpty()) {
                     try {
-                        cotitzacio = inputCotitzacio.toDouble()
+                        cotitzacio = inputCotitzacio.replace(",", ".").toDouble()
                         criptoSelecionada = true
                     } catch (e: Exception) {
                         mostraError(errorGeneral)
