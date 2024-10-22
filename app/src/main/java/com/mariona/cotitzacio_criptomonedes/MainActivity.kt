@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity() {
     private var dobleXRP: Boolean = false
 
     private var selectedButton: Button? = null
+    private var selectedButtonId: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -102,9 +103,15 @@ class MainActivity : AppCompatActivity() {
                 dobleEtherum = it.getBoolean("dobleEtherum", false)
                 dobleTether = it.getBoolean("dobleTether", false)
                 dobleXRP = it.getBoolean("dobleXRP", false)
+                selectedButtonId = it.getInt("selectedButtonId")
 
                 txtInput.text = numeroActual
                 calcularCotitzacio()
+
+                selectedButtonId?.let { id ->
+                    val button = findViewById<Button>(id)
+                    selectButton(button)
+                }
             }
 
         } catch (e: Exception) {
@@ -121,6 +128,7 @@ class MainActivity : AppCompatActivity() {
         outState.putBoolean("dobleEtherum", dobleEtherum)
         outState.putBoolean("dobleTether", dobleTether)
         outState.putBoolean("dobleXRP", dobleXRP)
+        selectedButtonId?.let { outState.putInt("selectedButtonId", it) }
     }
 
     // Función para cuando se aprieta algún número
@@ -191,7 +199,6 @@ class MainActivity : AppCompatActivity() {
 
         try {
             if (numeroActual.isNotEmpty()) {
-
                 if (!criptoSelecionada) {
                     mostraError(errorCriptomoneda)
                     return
@@ -274,6 +281,7 @@ class MainActivity : AppCompatActivity() {
         button.setBackgroundColor(ContextCompat.getColor(this, R.color.selectedColor))
         // Actualizar el botón seleccionado
         selectedButton = button
+        selectedButtonId = button.id // Guardar el ID del botón seleccionado
     }
 
     // Función del snackbar de los errores
