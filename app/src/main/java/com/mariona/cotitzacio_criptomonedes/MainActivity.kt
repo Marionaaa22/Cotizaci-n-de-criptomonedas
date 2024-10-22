@@ -149,7 +149,7 @@ class MainActivity : AppCompatActivity() {
                     txtInput.text = numeroActual
                     calcularCotitzacio()
                 } else {
-                    mostraError(errorDecimal)
+                    mostraError(errorDecimal) // Error si ya tiene dos decimales
                 }
             } else {
                 numeroActual += numero
@@ -216,11 +216,18 @@ class MainActivity : AppCompatActivity() {
         var resultat: Double = 0.0
         val errorValid: String = getString(R.string.errorValid)
         val errorGeneral: String = getString(R.string.errorGeneral)
+
         try {
             if (cotitzacio != 0.0 && numeroActual.isNotEmpty()) {
                 val diners = numeroActual.replace(",", ".").toDouble()
                 resultat = diners * cotitzacio
-                txtOutput.text = formatoDecimal.format(resultat)
+
+                // Formatear el resultado para mostrar más de 6 decimales si es necesario
+                val symbols = DecimalFormatSymbols(Locale.getDefault())
+                symbols.decimalSeparator = ','
+                symbols.groupingSeparator = '.'
+                val formatoResultado = DecimalFormat("#,##0.000000", symbols)
+                txtOutput.text = formatoResultado.format(resultat)
             } else {
                 txtOutput.text = "0"
             }
@@ -276,17 +283,4 @@ class MainActivity : AppCompatActivity() {
             missatge, Snackbar.LENGTH_SHORT
         ).show()
     }
-
-    // Función para resetear el estado
-    /*public fun resetState() {
-        numeroActual = ""
-        cotitzacio = 0.0
-        criptoSelecionada = false
-        txtInput.text = ""
-        txtOutput.text = "0"
-        dobleBitcoin = false
-        dobleEtherum = false
-        dobleTether = false
-        dobleXRP = false
-    }*/
 }
