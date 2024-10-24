@@ -15,4 +15,6 @@
     <string name="errorDecimal">Vous ne pouvez mettre que deux décimales</string>
     <string name="errorDoble">Vous sélectionnez d’abord la crypto-monnaie</string>
     <string name="errorNoComa">Vous ne pouvez pas saisir la virgule sans chiffres</string>
+    <string name="resultat">Résultat:</string>
+    <string name="introdueix_els_numeros">Entrez les chiffres:</string>
 </resources>

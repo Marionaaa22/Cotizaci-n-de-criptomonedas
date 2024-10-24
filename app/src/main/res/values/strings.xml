@@ -14,4 +14,6 @@
     <string name="errorDecimal">You can only put two decimal places</string>
     <string name="errorDoble">First select the cryptocurrency</string>
     <string name="errorNoComa">You cannot enter the comma without numbers</string>
+    <string name="resultat">Result:</string>
+    <string name="introdueix_els_numeros">Enter the numbers:</string>
 </resources>
