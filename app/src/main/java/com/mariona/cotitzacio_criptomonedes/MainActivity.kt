@@ -67,6 +67,12 @@ class MainActivity : AppCompatActivity() {
                     mostraError(errorCriptomoneda)
                 }
             }
+
+            btnBitcoin.setOnLongClickListener {
+                dialogSelecioCripto()
+                true
+            }
+
             btnEtherum.setOnClickListener {
                 if (!dobleEtherum) {
                     dobleEtherum = true
@@ -76,6 +82,12 @@ class MainActivity : AppCompatActivity() {
                     mostraError(errorCriptomoneda)
                 }
             }
+
+            btnEtherum.setOnLongClickListener {
+                dialogSelecioCripto()
+                true
+            }
+
             btnTether.setOnClickListener {
                 if (!dobleTether) {
                     dobleTether = true
@@ -85,6 +97,11 @@ class MainActivity : AppCompatActivity() {
                     mostraError(errorCriptomoneda)
                 }
             }
+
+            btnTether.setOnLongClickListener {
+                dialogSelecioCripto()
+                true
+            }
             btnXRP.setOnClickListener {
                 if (!dobleXRP) {
                     dobleXRP = true
@@ -93,6 +110,11 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     mostraError(errorCriptomoneda)
                 }
+            }
+
+            btnXRP.setOnLongClickListener {
+                dialogSelecioCripto()
+                true
             }
 
             // Restaurar el estat si existeix
