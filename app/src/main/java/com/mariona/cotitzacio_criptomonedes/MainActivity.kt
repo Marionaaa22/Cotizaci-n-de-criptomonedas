@@ -16,14 +16,14 @@ import androidx.core.content.ContextCompat
 
 class MainActivity : AppCompatActivity() {
 
-    // Variables que aún no se inicializan
+    // Variables que no s'utilitzen
     lateinit var txtInput: TextView
     lateinit var txtOutput: TextView
     lateinit var formatoDecimal: DecimalFormat
 
     // Variables
     private var numeroActual: String = "" // suma de números
-    private var cotitzacio: Double = 0.0 // variable para la cotización
+    private var cotitzacio: Double = 0.0 // variable per la cotización
     private var criptoSelecionada: Boolean = false
     private var dobleBitcoin: Boolean = false
     private var dobleEtherum: Boolean = false
@@ -41,11 +41,11 @@ class MainActivity : AppCompatActivity() {
         val errorCriptomoneda: String = getString(R.string.errorCriptomoneda)
 
         try {
-            // Buscar ID de las variables de texto
+
             txtInput = findViewById(R.id.txtInput)
             txtOutput = findViewById(R.id.txtOutput)
 
-            // Configurar el formato decimal con coma
+            // Configurar el format del decimal amb coma
             val symbols = DecimalFormatSymbols(Locale.getDefault())
             symbols.decimalSeparator = ','
             symbols.groupingSeparator = '.'
@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
             val btnTether: Button = findViewById(R.id.btnTether)
             val btnXRP: Button = findViewById(R.id.btnXRP)
 
-            // Set listener y dirigirlas a la función del diálogo para que ponga el valor
+            // Set listener i funció de dialog i la de botó
             btnBitcoin.setOnClickListener {
                 if (!dobleBitcoin) {
                     dobleBitcoin = true
@@ -95,7 +95,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
-            // Restaurar el estado si existe
+            // Restaurar el estat si existeix
             savedInstanceState?.let {
                 numeroActual = it.getString("numeroActual", "")
                 cotitzacio = it.getDouble("cotitzacio", 0.0)
@@ -120,6 +120,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    //funció per guardar les variables per si fa landscape
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putString("numeroActual", numeroActual)
@@ -132,7 +133,7 @@ class MainActivity : AppCompatActivity() {
         selectedButtonId?.let { outState.putInt("selectedButtonId", it) }
     }
 
-    // Función para cuando se aprieta algún número
+    // Función per quan apreta botons
     fun apretarNumero(view: View) {
         val errorDoble: String = getString(R.string.errorDoble)
         val errorGeneral: String = getString(R.string.errorGeneral)
@@ -179,7 +180,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // Función para borrar todo (CE)
+    // Funció per borrar
     fun borrarTot(view: View) {
         val errorGeneral: String = getString(R.string.errorGeneral)
         try {
@@ -192,7 +193,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // Función para la coma
+    // Funció per la coma
     fun Coma(view: View) {
         val errorComa: String = getString(R.string.errorComa)
         val errorCriptomoneda: String = getString(R.string.errorCriptomoneda)
@@ -219,7 +220,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // Función para calcular la cotización
+    // Funció per calcular la cotizació
     fun calcularCotitzacio() {
         var resultat: Double = 0.0
         val errorValid: String = getString(R.string.errorValid)
@@ -234,6 +235,7 @@ class MainActivity : AppCompatActivity() {
                 val symbols = DecimalFormatSymbols(Locale.getDefault())
                 symbols.decimalSeparator = ','
                 symbols.groupingSeparator = '.'
+                //pot ficar fins a 6 decimals
                 val formatoResultado = DecimalFormat("#,##0.000000", symbols)
                 txtOutput.text = formatoResultado.format(resultat)
             } else {
@@ -246,7 +248,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // Función del diálogo para mostrar el valor de la cripto
+    // Funció del diálogo per mostrar el valor de la cripto
     fun dialogSelecioCripto() {
         val errorValid: String = getString(R.string.errorValid)
         val errorGeneral: String = getString(R.string.errorGeneral)
